@@ -1,0 +1,39 @@
+{
+  "name": "botlend",
+  "version": "1.0.0",
+  "description": "BotLend - Decentralized Lending & Borrowing Protocol for the Botchain ecosystem",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
+    "deploy:testnet": "hardhat run scripts/deploy.ts --network botchainTestnet",
+    "configure:testnet": "hardhat run scripts/configure.ts --network botchainTestnet",
+    "frontend:install": "npm --prefix app/frontend install",
+    "frontend:dev": "npm --prefix app/frontend run dev",
+    "frontend:build": "npm --prefix app/frontend run build",
+    "frontend:lint": "npm --prefix app/frontend run lint",
+    "lint": "npm run frontend:lint"
+  },
+  "keywords": [
+    "solidity",
+    "defi",
+    "lending",
+    "borrowing",
+    "botchain",
+    "hardhat",
+    "nextjs",
+    "wagmi"
+  ],
+  "author": "BotLend Protocol Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.1.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^26.6.2",
+    "dotenv": "^16.4.7",
+    "hardhat": "^2.22.17",
+    "typescript": "^5.4.5"
+  }
+}

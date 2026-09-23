@@ -1,0 +1,24 @@
+{
+  "network": "botchainTestnet",
+  "chainId": 968,
+  "timestamp": "2026-09-23T09:19:56.203Z",
+  "deployer": "0x83acc57bb9CDe889b248E9c740F5248637cd89f4",
+  "contracts": {
+    "BotLend": "0x5bf004Ca66FfcBB1Cca94226c4069f414F4D6e22",
+    "BotToken": "0x88827604C656A79D1c19619fF36BFF73211B360B",
+    "BotOracle": "0xCC23fcFf346e02E6C0419DD913B2ff232C09F63B",
+    "OracleFeedId": 1,
+    "MaxOracleAgeSeconds": 3600
+  },
+  "riskParameters": {
+    "maxLTVBps": 7000,
+    "liquidationThresholdBps": 7500,
+    "liquidationBonusBps": 500,
+    "reserveFactorBps": 1000
+  },
+  "interestParameters": {
+    "baseBorrowRateApy": "2%",
+    "slopeBorrowRateApy": "18%"
+  },
+  "explorerUrl": "https://scan.bohr.life"
+}

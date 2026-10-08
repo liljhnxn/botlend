@@ -5,9 +5,9 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "BotLend | Decentralized Lending & Borrowing on Botchain",
+  title: "BotLend | Decentralized Lending & Borrowing on BOT Chain Mainnet",
   description:
-    "Overcollateralized decentralized lending and borrowing protocol natively built on Botchain Testnet (Chain ID 968).",
+    "Overcollateralized decentralized lending and borrowing protocol natively built on BOT Chain Mainnet (Chain ID 677).",
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },

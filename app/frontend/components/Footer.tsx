@@ -40,17 +40,17 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="https://scan.bohr.life"
+                  href="https://scan.botchain.ai"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 hover:text-cyan-400 transition"
                 >
-                  BohrScan Explorer <ExternalLink className="w-3 h-3" />
+                  BotScan Explorer <ExternalLink className="w-3 h-3" />
                 </a>
               </li>
               <li>
                 <a
-                  href="https://rpc.bohr.life"
+                  href="https://rpc.botchain.ai"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 hover:text-cyan-400 transition"
@@ -66,8 +66,8 @@ export function Footer() {
           {/* Col 4: Network Specs */}
           <div className="space-y-2 text-slate-500">
             <h4 className="text-white font-semibold mb-3">Network Specs</h4>
-            <p><span className="text-slate-400">Network:</span> Botchain Testnet</p>
-            <p><span className="text-slate-400">Chain ID:</span> 968</p>
+            <p><span className="text-slate-400">Network:</span> BOT Chain Mainnet</p>
+            <p><span className="text-slate-400">Chain ID:</span> 677</p>
             <p><span className="text-slate-400">Gas Token:</span> BOT</p>
             <p><span className="text-slate-400">Oracle:</span> BotOracle Feed v1</p>
           </div>

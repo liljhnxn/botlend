@@ -3,7 +3,7 @@
 This directory contains records of deployments across various networks.
 
 ## Deployment Files
-- `botchainTestnet.json`: Deployment on Botchain Testnet (Chain ID `968`, RPC: `https://rpc.bohr.life`, Explorer: `https://scan.bohr.life`).
+- `botchainMainnet.json`: Deployment on BOT Chain Mainnet (Chain ID `677`, RPC: `https://rpc.botchain.ai`, Explorer: `https://scan.botchain.ai`).
 - `hardhat.json` / `localhost.json`: Deployment on local development nodes.
 
 ## Structure

@@ -27,6 +27,7 @@ import {
   shortenAddress,
   getExplorerTxUrl,
 } from "../lib/utils";
+import { CONTRACT_CONFIG } from "../lib/contracts";
 
 export default function DashboardPage() {
   const { isConnected, address } = useAccount();
@@ -56,12 +57,22 @@ export default function DashboardPage() {
           </h1>
           <p className="text-slate-400 text-sm mt-1 max-w-2xl">
             Overcollateralized lending and borrowing powered by on-chain smart contracts. Real-time metrics
-            directly verified from Botchain Testnet.
+            directly verified from BOT Chain Mainnet.
           </p>
         </div>
 
-        {/* Quick Faucet & Action Buttons */}
-        <div className="flex items-center gap-3">
+        {/* Quick Actions & Explorer Link */}
+        <div className="flex flex-wrap items-center gap-3">
+          <a
+            href={`https://scan.botchain.ai/address/${CONTRACT_CONFIG.botLendAddress || "0x7D097D3C1C56Fb555F76f7C57E84543CAeB6674a"}#code`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-cyan-400 border border-slate-700 hover:border-cyan-500/40 text-xs font-semibold shadow-sm transition"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+            <span>View Verified Contract</span>
+          </a>
+
           {activeConnected && (
             <button
               onClick={() => claimFaucet()}

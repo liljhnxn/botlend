@@ -14,15 +14,24 @@ async function main() {
   console.log(`Deployer balance: ${ethers.formatEther(balance)} BOT`);
 
   let botTokenAddress = process.env.NEXT_PUBLIC_BOT_TOKEN_ADDRESS;
+  if (!botTokenAddress && network.name === "botchainMainnet") {
+    // Official Wrapped BOT (WBOT) on BOT Chain Mainnet
+    botTokenAddress = "0xD5452816194a3784dBa983426cCe7c122F4abd30";
+  }
+
   let oracleAddress = process.env.NEXT_PUBLIC_BOTORACLE_CONTRACT_ADDRESS;
   const feedId = process.env.NEXT_PUBLIC_BOTORACLE_FEED_ID ? parseInt(process.env.NEXT_PUBLIC_BOTORACLE_FEED_ID) : 1;
   const maxOracleAge = 3600; // 1 hour
+
+  // Determine optimal minimum gas price (20 gwei for BOT Chain)
+  const gasPrice = network.name.startsWith("botchain") ? ethers.parseUnits("20", "gwei") : undefined;
+  const txOverrides = gasPrice ? { gasPrice } : {};
 
   // 1. Token Setup
   if (!botTokenAddress || botTokenAddress.trim() === "") {
     console.log("\nNo existing token address configured. Deploying BotLendToken (BLBOT) for testing...");
     const BotLendTokenFactory = await ethers.getContractFactory("BotLendToken");
-    const botToken = await BotLendTokenFactory.deploy();
+    const botToken = await BotLendTokenFactory.deploy(txOverrides);
     await botToken.waitForDeployment();
     botTokenAddress = await botToken.getAddress();
     console.log(`✓ BotLendToken deployed at: ${botTokenAddress}`);
@@ -34,7 +43,7 @@ async function main() {
   if (!oracleAddress || oracleAddress.trim() === "") {
     console.log("\nNo BotOracle address configured. Deploying MockBotOracle for testing...");
     const MockBotOracleFactory = await ethers.getContractFactory("MockBotOracle");
-    const mockOracle = await MockBotOracleFactory.deploy();
+    const mockOracle = await MockBotOracleFactory.deploy(txOverrides);
     await mockOracle.waitForDeployment();
     oracleAddress = await mockOracle.getAddress();
     console.log(`✓ MockBotOracle deployed at: ${oracleAddress}`);
@@ -43,16 +52,17 @@ async function main() {
     const block = await ethers.provider.getBlock("latest");
     const timestamp = block ? block.timestamp : Math.floor(Date.now() / 1000);
     const initialPrice = ethers.parseUnits("1.0", 18);
-    await mockOracle.setAnswer(feedId, initialPrice, timestamp, 1);
+    const setAnswerTx = await mockOracle.setAnswer(feedId, initialPrice, timestamp, 1, txOverrides);
+    await setAnswerTx.wait();
     console.log(`✓ Configured initial feed ${feedId} price: $1.00 at timestamp ${timestamp}`);
   } else {
     console.log(`\nUsing configured BotOracle at: ${oracleAddress}`);
   }
 
   // 3. Deploy BotLend Protocol
-  console.log("\nDeploying BotLend protocol...");
+  console.log("\nDeploying BotLend protocol with lowest gas fees...");
   const BotLendFactory = await ethers.getContractFactory("BotLend");
-  const botLend = await BotLendFactory.deploy(botTokenAddress, oracleAddress, feedId, maxOracleAge);
+  const botLend = await BotLendFactory.deploy(botTokenAddress, oracleAddress, feedId, maxOracleAge, txOverrides);
   await botLend.waitForDeployment();
   const botLendAddress = await botLend.getAddress();
   console.log(`✓ BotLend protocol deployed at: ${botLendAddress}`);
@@ -62,6 +72,11 @@ async function main() {
   if (!fs.existsSync(deploymentDir)) {
     fs.mkdirSync(deploymentDir, { recursive: true });
   }
+
+  const explorerUrl =
+    network.name === "botchainMainnet"
+      ? "https://scan.botchain.ai"
+      : "http://localhost:8545";
 
   const deploymentData = {
     network: network.name,
@@ -85,7 +100,7 @@ async function main() {
       baseBorrowRateApy: "2%",
       slopeBorrowRateApy: "18%",
     },
-    explorerUrl: "https://scan.bohr.life",
+    explorerUrl: explorerUrl,
   };
 
   const deploymentPath = path.join(deploymentDir, `${network.name}.json`);

@@ -7,7 +7,7 @@ import { ShieldAlert, AlertOctagon, CheckCircle2, Coins, ArrowRight, Loader2 } f
 import { useBotLend } from "../../hooks/useBotLend";
 import { useBotLendActions } from "../../hooks/useBotLendActions";
 import { useEvents } from "../../hooks/useEvents";
-import { botchainTestnet, CONTRACT_CONFIG, BOTLEND_ABI } from "../../lib/contracts";
+import { botchainMainnet, CONTRACT_CONFIG, BOTLEND_ABI } from "../../lib/contracts";
 import { HealthFactorBadge } from "../../components/HealthFactorBadge";
 import { TxModal } from "../../components/TxModal";
 import { formatTokenAmount, shortenAddress } from "../../lib/utils";
@@ -41,8 +41,8 @@ export default function LiquidationsPage() {
       setIsScanning(true);
       try {
         const client = createPublicClient({
-          chain: botchainTestnet,
-          transport: http(process.env.NEXT_PUBLIC_BOTCHAIN_RPC_URL || "https://rpc.bohr.life"),
+          chain: botchainMainnet,
+          transport: http(process.env.NEXT_PUBLIC_BOTCHAIN_RPC_URL || "https://rpc.botchain.ai"),
         });
 
         // Extract unique borrower addresses from event logs

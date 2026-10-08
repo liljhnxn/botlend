@@ -30,7 +30,7 @@ export default function ActivityPage() {
       <div>
         <h1 className="text-3xl font-extrabold text-white tracking-tight">On-Chain Protocol Activity</h1>
         <p className="text-slate-400 text-sm mt-1 max-w-2xl">
-          Real-time decentralized event log indexed directly from BotLend smart contract logs on Botchain Testnet.
+          Real-time decentralized event log indexed directly from BotLend smart contract logs on BOT Chain Mainnet.
         </p>
       </div>
 

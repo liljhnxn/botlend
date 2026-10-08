@@ -5,7 +5,7 @@
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.24-363636?logo=solidity)](https://soliditylang.org/)
 [![Hardhat](https://img.shields.io/badge/Hardhat-2.22-yellow)](https://hardhat.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black?logo=next.js)](https://nextjs.org/)
-[![Network](https://img.shields.io/badge/Network-Botchain%20Testnet%20(968)-00f0ff)](https://scan.bohr.life)
+[![Network](https://img.shields.io/badge/Network-BOT%20Chain%20Mainnet%20(677)-00f0ff)](https://scan.botchain.ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ---
@@ -110,7 +110,7 @@ botlend/
 ├── deployments/
 │   └── README.md                   # Network registry and address documentation
 │
-├── hardhat.config.ts               # Hardhat configuration (Chain ID 968)
+├── hardhat.config.ts               # Hardhat configuration (Chain ID 677)
 ├── package.json                    # Root workspace package.json
 ├── tsconfig.json                   # TypeScript configuration
 ├── .env.example                    # Environment variable template
@@ -137,8 +137,8 @@ botlend/
 
 ### `BotLendToken.sol`
 - ERC20 test token (`BotLend BOT`, symbol: `BLBOT`) with 18 decimals.
-- Built-in public `faucet()` providing 1,000 BLBOT per request for seamless testnet testing.
-- *Notice*: For local testing and testnet only. The protocol can be configured to any standard ERC20 on Botchain.
+- Built-in public `faucet()` providing 1,000 BLBOT per request for testing.
+- *Notice*: The protocol can be configured to any standard ERC20 on Botchain.
 
 ### `IBotOracle.sol` & `MockBotOracle.sol`
 - Feed interface querying `getLatestAnswer(feedId)`.
@@ -146,14 +146,14 @@ botlend/
 
 ---
 
-## 5. Botchain Testnet Configuration
+## 5. BOT Chain Mainnet Configuration
 
 | Property | Value |
 | :--- | :--- |
-| **Network Name** | Botchain Testnet |
-| **Chain ID** | `968` |
-| **RPC Endpoint** | `https://rpc.bohr.life` |
-| **Block Explorer** | `https://scan.bohr.life` |
+| **Network Name** | BOT Chain Mainnet |
+| **Chain ID** | `677` |
+| **RPC Endpoint** | `https://rpc.botchain.ai` |
+| **Block Explorer** | `https://scan.botchain.ai` |
 | **Native Gas Token** | BOT |
 
 ---
@@ -178,16 +178,16 @@ Copy `.env.example` to `.env`:
 ```bash
 cp .env.example .env
 ```
-Fill in your deployer private key (if deploying to Botchain Testnet) and deployed contract addresses:
+Fill in your deployer private key and deployed contract addresses:
 ```env
-NEXT_PUBLIC_BOTCHAIN_CHAIN_ID=968
-NEXT_PUBLIC_BOTCHAIN_RPC_URL=https://rpc.bohr.life
-NEXT_PUBLIC_BOTCHAIN_EXPLORER_URL=https://scan.bohr.life
-NEXT_PUBLIC_BOTLEND_CONTRACT_ADDRESS=0x...
-NEXT_PUBLIC_BOT_TOKEN_ADDRESS=0x...
-NEXT_PUBLIC_BOTORACLE_CONTRACT_ADDRESS=0x...
+NEXT_PUBLIC_BOTCHAIN_CHAIN_ID=677
+NEXT_PUBLIC_BOTCHAIN_RPC_URL=https://rpc.botchain.ai
+NEXT_PUBLIC_BOTCHAIN_EXPLORER_URL=https://scan.botchain.ai
+NEXT_PUBLIC_BOTLEND_CONTRACT_ADDRESS=0x7D097D3C1C56Fb555F76f7C57E84543CAeB6674a
+NEXT_PUBLIC_BOT_TOKEN_ADDRESS=0xD5452816194a3784dBa983426cCe7c122F4abd30
+NEXT_PUBLIC_BOTORACLE_CONTRACT_ADDRESS=0xb7Ca90c5d60B86CF08B4BE94c973EcCCa4D2f844
 NEXT_PUBLIC_BOTORACLE_FEED_ID=1
-BOTCHAIN_RPC_URL=https://rpc.bohr.life
+BOTCHAIN_RPC_URL=https://rpc.botchain.ai
 DEPLOYER_PRIVATE_KEY=your_private_key_here
 ```
 
@@ -209,9 +209,9 @@ npx hardhat test
 npm run deploy:local
 ```
 
-**Botchain Testnet Deployment:**
+**BOT Chain Mainnet Deployment:**
 ```bash
-npm run deploy:testnet
+npm run deploy:mainnet
 ```
 
 ### Step 6: Launch Frontend dApp
@@ -235,7 +235,7 @@ npm run frontend:build
 4. **Borrow & Collateral (`/borrow`)**: Collateral management (deposit/withdraw), borrow execution within LTV limits, and loan repayment with `repayAll`.
 5. **Position (`/position`)**: User position dashboard with status badges (**Healthy**, **Warning**, **Liquidatable**), liquidation price, and borrow capacity.
 6. **Liquidations (`/liquidations`)**: Scans on-chain loan positions and presents liquidatable borrowers with a 1-click liquidation execution modal.
-7. **Activity (`/activity`)**: Blockchain event indexer filtering `Supply`, `Borrow`, `Repay`, `CollateralDeposited`, and `Liquidation` logs with BohrScan explorer links.
+7. **Activity (`/activity`)**: Blockchain event indexer filtering `Supply`, `Borrow`, `Repay`, `CollateralDeposited`, and `Liquidation` logs with BotScan explorer links.
 8. **Admin Governance (`/admin`)**: Role-guarded dashboard allowing authorized administrators to adjust LTV, thresholds, interest models, oracle feeds, and emergency pause status.
 9. **Developer Integration (`/developer`)**: Solidity interfaces, contract address registry, code snippets, and BotOracle ecosystem documentation.
 
@@ -244,7 +244,7 @@ npm run frontend:build
 ## 8. Important Limitations & Risk Disclosures
 
 > [!WARNING]
-> - **MVP Implementation**: BotLend is an MVP demonstration protocol designed for testing and development on Botchain Testnet.
+> - **MVP Implementation**: BotLend is an MVP demonstration protocol designed for testing and development.
 > - **Not Audited**: These contracts have not undergone a formal third-party security audit. Do not deploy to production with real capital without an independent audit.
 > - **Overcollateralized Nature**: The protocol requires borrowers to maintain collateral exceeding their loan value. Severe market volatility or oracle latency may trigger automated liquidations.
 > - **Oracle Dependency**: The protocol relies on BotOracle feeds. If oracle prices become stale or unavailable, price-sensitive operations (`borrow`, `withdrawCollateral`, `liquidate`) are automatically rejected to protect the protocol.

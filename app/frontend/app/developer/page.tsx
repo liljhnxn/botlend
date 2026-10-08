@@ -93,25 +93,53 @@ interface IBotOracle {
               <span className="text-slate-400 font-sans block text-[11px]">BotLend Core Protocol:</span>
               <span className="text-white font-bold">{CONTRACT_CONFIG.botLendAddress || "Configured via .env"}</span>
             </div>
-            <button
-              onClick={() => copyToClipboard(CONTRACT_CONFIG.botLendAddress, "botlend")}
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
-            >
-              {copiedKey === "botlend" ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-            </button>
+            <div className="flex items-center gap-1.5">
+              {CONTRACT_CONFIG.botLendAddress && (
+                <a
+                  href={`https://scan.botchain.ai/address/${CONTRACT_CONFIG.botLendAddress}#code`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-400 transition"
+                  title="View on BotScan"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
+              <button
+                onClick={() => copyToClipboard(CONTRACT_CONFIG.botLendAddress, "botlend")}
+                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+                title="Copy address"
+              >
+                {copiedKey === "botlend" ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              </button>
+            </div>
           </div>
 
           <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
             <div>
-              <span className="text-slate-400 font-sans block text-[11px]">BOT Token (BLBOT):</span>
+              <span className="text-slate-400 font-sans block text-[11px]">BOT Token:</span>
               <span className="text-white font-bold">{CONTRACT_CONFIG.botTokenAddress || "Configured via .env"}</span>
             </div>
-            <button
-              onClick={() => copyToClipboard(CONTRACT_CONFIG.botTokenAddress, "token")}
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
-            >
-              {copiedKey === "token" ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-            </button>
+            <div className="flex items-center gap-1.5">
+              {CONTRACT_CONFIG.botTokenAddress && (
+                <a
+                  href={`https://scan.botchain.ai/address/${CONTRACT_CONFIG.botTokenAddress}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-400 transition"
+                  title="View on BotScan"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
+              <button
+                onClick={() => copyToClipboard(CONTRACT_CONFIG.botTokenAddress, "token")}
+                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+                title="Copy address"
+              >
+                {copiedKey === "token" ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              </button>
+            </div>
           </div>
 
           <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
@@ -119,12 +147,26 @@ interface IBotOracle {
               <span className="text-slate-400 font-sans block text-[11px]">BotOracle Feed Contract:</span>
               <span className="text-white font-bold">{CONTRACT_CONFIG.oracleAddress || "Configured via .env"}</span>
             </div>
-            <button
-              onClick={() => copyToClipboard(CONTRACT_CONFIG.oracleAddress, "oracle")}
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
-            >
-              {copiedKey === "oracle" ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-            </button>
+            <div className="flex items-center gap-1.5">
+              {CONTRACT_CONFIG.oracleAddress && (
+                <a
+                  href={`https://scan.botchain.ai/address/${CONTRACT_CONFIG.oracleAddress}#code`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-400 transition"
+                  title="View on BotScan"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
+              <button
+                onClick={() => copyToClipboard(CONTRACT_CONFIG.oracleAddress, "oracle")}
+                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+                title="Copy address"
+              >
+                {copiedKey === "oracle" ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              </button>
+            </div>
           </div>
         </div>
       </div>

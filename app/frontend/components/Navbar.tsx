@@ -19,8 +19,9 @@ import {
   Menu,
   X,
   Droplets,
+  ExternalLink,
 } from "lucide-react";
-import { botchainTestnet } from "../lib/contracts";
+import { activeChain, CONTRACT_CONFIG } from "../lib/contracts";
 import { shortenAddress } from "../lib/utils";
 
 const NAV_LINKS = [
@@ -52,7 +53,7 @@ export function Navbar() {
   }, []);
 
   const activeConnected = mounted && isConnected;
-  const isWrongNetwork = activeConnected && chainId !== botchainTestnet.id && chainId !== 31337;
+  const isWrongNetwork = activeConnected && chainId !== activeChain.id && chainId !== 31337;
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-[#080c14]/90 backdrop-blur-xl">
@@ -102,22 +103,40 @@ export function Navbar() {
 
           {/* Right Action Buttons */}
           <div className="flex items-center gap-3">
+            {/* Mainnet Explorer Direct Link */}
+            <a
+              href={`https://scan.botchain.ai/address/${CONTRACT_CONFIG.botLendAddress || "0x7D097D3C1C56Fb555F76f7C57E84543CAeB6674a"}#code`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-950/40 hover:bg-cyan-900/60 text-cyan-400 border border-cyan-500/30 text-xs font-semibold shadow-sm transition"
+              title="View live verified contract on BotScan"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span>Mainnet Explorer</span>
+            </a>
+
             {/* Network Indicator / Switcher */}
             {activeConnected && (
               <div>
                 {isWrongNetwork ? (
                   <button
-                    onClick={() => switchChain({ chainId: botchainTestnet.id })}
+                    onClick={() => switchChain({ chainId: activeChain.id })}
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-950/80 text-rose-300 border border-rose-500/50 text-xs font-semibold hover:bg-rose-900 transition"
                   >
                     <AlertTriangle className="w-3.5 h-3.5 text-rose-400 animate-pulse" />
-                    <span>Switch to Botchain</span>
+                    <span>Switch to {activeChain.name}</span>
                   </button>
                 ) : (
-                  <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300">
+                  <a
+                    href="https://scan.botchain.ai"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800/80 border border-slate-800 text-xs text-slate-300 transition"
+                    title="View BOT Chain Mainnet on BotScan"
+                  >
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="font-medium">Botchain Testnet (968)</span>
-                  </div>
+                    <span className="font-medium">{activeChain.name} ({activeChain.id})</span>
+                  </a>
                 )}
               </div>
             )}
@@ -145,17 +164,26 @@ export function Navbar() {
                 </button>
 
                 {walletDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 rounded-xl bg-[#0f172a] border border-slate-800 shadow-2xl p-1.5 z-50 text-xs">
+                  <div className="absolute right-0 mt-2 w-52 rounded-xl bg-[#0f172a] border border-slate-800 shadow-2xl p-1.5 z-50 text-xs">
                     <div className="px-3 py-2 border-b border-slate-800 text-slate-400 text-[11px]">
                       Connected Account
                       <div className="text-white font-mono mt-0.5 truncate">{address}</div>
                     </div>
+                    <a
+                      href={`https://scan.botchain.ai/address/${address}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center gap-2 px-3 py-2 text-slate-300 hover:text-white hover:bg-slate-800/60 rounded-lg transition text-left mt-1"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5 text-cyan-400" />
+                      <span>View Account on BotScan</span>
+                    </a>
                     <button
                       onClick={() => {
                         disconnect();
                         setWalletDropdownOpen(false);
                       }}
-                      className="w-full flex items-center gap-2 px-3 py-2 text-rose-400 hover:bg-rose-950/40 rounded-lg transition text-left mt-1"
+                      className="w-full flex items-center gap-2 px-3 py-2 text-rose-400 hover:bg-rose-950/40 rounded-lg transition text-left"
                     >
                       <LogOut className="w-3.5 h-3.5" />
                       Disconnect
@@ -198,6 +226,17 @@ export function Navbar() {
               </Link>
             );
           })}
+          <div className="pt-2">
+            <a
+              href={`https://scan.botchain.ai/address/${CONTRACT_CONFIG.botLendAddress || "0x7D097D3C1C56Fb555F76f7C57E84543CAeB6674a"}#code`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-cyan-950/50 text-cyan-400 border border-cyan-500/30 text-xs font-semibold"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span>Mainnet Explorer (BotScan)</span>
+            </a>
+          </div>
         </div>
       )}
     </header>

@@ -26,7 +26,7 @@ export default function MarketsPage() {
             <h2 className="text-lg font-bold text-white">Active Markets</h2>
           </div>
           <div className="text-xs text-slate-400">
-            Chain: <span className="text-cyan-400 font-semibold">Botchain Testnet (968)</span>
+            Chain: <span className="text-cyan-400 font-semibold">BOT Chain Mainnet (677)</span>
           </div>
         </div>
 

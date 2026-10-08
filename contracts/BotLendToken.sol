@@ -7,9 +7,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * @title BotLendToken
- * @notice ERC20 test token (BLBOT) created for local testing and testnet deployment.
- * @dev NOTE: This token is exclusively for testing BotLend protocol functionality.
- *      It should NOT be confused with the native gas token of Botchain (BOT).
+ * @notice ERC20 protocol token (BLBOT) created for BotLend protocol functionality.
+ * @dev NOTE: This ERC20 token should NOT be confused with the native gas token of Botchain (BOT).
  */
 contract BotLendToken is ERC20, ERC20Burnable, Ownable {
     uint256 public constant FAUCET_AMOUNT = 1_000 * 10**18;

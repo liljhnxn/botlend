@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createPublicClient, http, parseAbiItem } from "viem";
-import { botchainTestnet, CONTRACT_CONFIG } from "../lib/contracts";
+import { botchainMainnet, CONTRACT_CONFIG } from "../lib/contracts";
 import { ProtocolActivityItem } from "../types";
 
 export function useEvents() {
@@ -20,8 +20,8 @@ export function useEvents() {
       setIsLoading(true);
       try {
         const client = createPublicClient({
-          chain: botchainTestnet,
-          transport: http(process.env.NEXT_PUBLIC_BOTCHAIN_RPC_URL || "https://rpc.bohr.life"),
+          chain: botchainMainnet,
+          transport: http(process.env.NEXT_PUBLIC_BOTCHAIN_RPC_URL || "https://rpc.botchain.ai"),
         });
 
         const currentBlock = await client.getBlockNumber();

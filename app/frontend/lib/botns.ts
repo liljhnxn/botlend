@@ -6,6 +6,6 @@
  */
 export async function resolveIdentity(address?: string): Promise<string> {
   if (!address) return "";
-  // Future: query BotNS Registry contract on Botchain (Chain ID 968)
+  // Future: query BotNS Registry contract on Botchain (Chain ID 677)
   return address;
 }

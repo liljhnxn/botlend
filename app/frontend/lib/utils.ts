@@ -37,11 +37,11 @@ export function shortenAddress(address?: string): string {
 }
 
 export function getExplorerTxUrl(hash?: string): string {
-  const base = process.env.NEXT_PUBLIC_BOTCHAIN_EXPLORER_URL || "https://scan.bohr.life";
+  const base = process.env.NEXT_PUBLIC_BOTCHAIN_EXPLORER_URL || "https://scan.botchain.ai";
   return `${base.replace(/\/$/, "")}/tx/${hash || ""}`;
 }
 
 export function getExplorerAddressUrl(address?: string): string {
-  const base = process.env.NEXT_PUBLIC_BOTCHAIN_EXPLORER_URL || "https://scan.bohr.life";
+  const base = process.env.NEXT_PUBLIC_BOTCHAIN_EXPLORER_URL || "https://scan.botchain.ai";
   return `${base.replace(/\/$/, "")}/address/${address || ""}`;
 }

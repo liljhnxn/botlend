@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { activeChain, CONTRACT_CONFIG } from "../lib/contracts";
 import { shortenAddress } from "../lib/utils";
+import { BotChainLogo } from "./BotChainLogo";
 
 const NAV_LINKS = [
   { name: "Dashboard", href: "/", icon: PieChart },
@@ -108,11 +109,12 @@ export function Navbar() {
               href={`https://scan.botchain.ai/address/${CONTRACT_CONFIG.botLendAddress || "0x7D097D3C1C56Fb555F76f7C57E84543CAeB6674a"}#code`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-950/40 hover:bg-cyan-900/60 text-cyan-400 border border-cyan-500/30 text-xs font-semibold shadow-sm transition"
+              className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-cyan-950/40 hover:bg-cyan-900/60 text-cyan-300 hover:text-white border border-cyan-500/30 text-xs font-semibold shadow-sm transition group"
               title="View live verified contract on BotScan"
             >
-              <ExternalLink className="w-3.5 h-3.5" />
-              <span>Mainnet Explorer</span>
+              <BotChainLogo className="w-3.5 h-3.5 rounded-xs group-hover:scale-110 transition-transform" size={14} />
+              <span>BOT Chain Explorer</span>
+              <ExternalLink className="w-3 h-3 text-cyan-400" />
             </a>
 
             {/* Network Indicator / Switcher */}

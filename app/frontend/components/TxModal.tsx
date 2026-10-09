@@ -65,7 +65,7 @@ export function TxModal({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs text-cyan-400 hover:text-cyan-300 underline underline-offset-4 mb-4"
                 >
-                  View on BohrScan <ExternalLink className="w-3.5 h-3.5" />
+                  View on BotScan <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               )}
             </>
@@ -87,7 +87,7 @@ export function TxModal({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-300 hover:bg-emerald-900/40 transition mb-6"
                 >
-                  View on BohrScan Explorer <ExternalLink className="w-3.5 h-3.5" />
+                  View on BotScan Explorer <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               )}
               <button
@@ -115,7 +115,7 @@ export function TxModal({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs text-rose-400 hover:text-rose-300 underline underline-offset-4 mb-4"
                 >
-                  View on BohrScan Explorer <ExternalLink className="w-3.5 h-3.5" />
+                  View on BotScan Explorer <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               )}
               <button

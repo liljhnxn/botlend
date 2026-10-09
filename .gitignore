@@ -25,6 +25,9 @@ dist/
 # Scratch & test query scripts
 scripts/checkUser.js
 scripts/fixOracleAge.js
+scripts/check-status.ts
+scripts/split-and-interact.ts
+deployments/interactions-report.json
 app/frontend/checkUserState.js
 app/frontend/scripts/fixOracleAge.js
 

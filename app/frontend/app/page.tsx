@@ -13,6 +13,8 @@ import {
   Droplets,
   ExternalLink,
   Sparkles,
+  Globe,
+  Compass,
 } from "lucide-react";
 import { useBotLend } from "../hooks/useBotLend";
 import { useBotLendActions } from "../hooks/useBotLendActions";
@@ -21,6 +23,7 @@ import { StatCard } from "../components/StatCard";
 import { HealthFactorBadge } from "../components/HealthFactorBadge";
 import { PoolMetricsVisualizer } from "../components/Charts";
 import { TxModal } from "../components/TxModal";
+import { BotChainLogo } from "../components/BotChainLogo";
 import {
   formatTokenAmount,
   formatPercentRate,
@@ -264,7 +267,7 @@ export default function DashboardPage() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300"
                       >
-                        <span>BohrScan</span>
+                        <span>BotScan</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     </td>
@@ -274,6 +277,54 @@ export default function DashboardPage() {
             </table>
           </div>
         )}
+      </div>
+
+      {/* BOT Chain Ecosystem Spotlight Section */}
+      <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#0c1527] to-[#080d19] border border-cyan-500/20 shadow-2xl relative overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
+          <div className="flex items-start sm:items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-slate-900 border border-cyan-500/40 p-2.5 flex items-center justify-center flex-shrink-0 shadow-lg shadow-cyan-500/20">
+              <BotChainLogo className="w-full h-full" size={38} />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs uppercase tracking-widest font-bold text-cyan-400">Official Infrastructure</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              </div>
+              <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight mt-0.5">
+                Built for the BOT Chain Ecosystem
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-xl leading-relaxed">
+                Experience ultra-low transaction fees and rapid finality on BOT Chain Mainnet. Verify all smart contracts, pool metrics, and real-time state on the official explorer.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="https://botchain.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-cyan-300 hover:text-white border border-cyan-500/30 hover:border-cyan-400 text-xs font-semibold shadow-md transition group"
+            >
+              <BotChainLogo className="w-4 h-4 rounded-sm group-hover:scale-110 transition-transform" size={16} />
+              <span>BOT Chain Website</span>
+              <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-cyan-300 transition" />
+            </a>
+
+            <a
+              href="https://scan.botchain.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs font-semibold shadow-lg shadow-cyan-500/25 transition group"
+            >
+              <BotChainLogo className="w-4 h-4 rounded-sm group-hover:scale-110 transition-transform" size={16} />
+              <span>BOT Chain Explorer</span>
+              <ExternalLink className="w-3 h-3 text-white/80" />
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* Global Transaction Modal */}
